@@ -1,25 +1,32 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Page from './components/Page';
+import { ThemeProvider } from 'styled-components';
 
-function App() {
+const theme = {
+  colors: {
+    mainBackground: 'hsl(222, 26%, 31%)',
+    toggleBackground: 'hsl(183, 100%, 15%)',
+    screenBackground: 'hsl(186, 14%, 43%)',
+    keyBackground: 'hsl(184, 14%, 56%)',
+    keyShadow: 'hsl(185, 41%, 84%)',
+    keyBackground2: 'hsl(189, 41%, 97%)',
+    keyShadow2: 'hsl(0, 0%, 100%)',
+    textColour: 'hsl(221, 14%, 31%)',
+    textColour2: 'hsl(0, 0%, 100%)',
+  },
+  font: {
+    main: `'Spartan', sans-serif`,
+  },
+};
+
+function App(props: object) {
+  console.log(props);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Page />
+    </ThemeProvider>
   );
 }
 
