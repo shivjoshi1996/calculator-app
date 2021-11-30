@@ -24,6 +24,22 @@ export default function Calculator() {
     })
   }
 
+  function resetCalculator() {
+    setCalculator({
+      value: null,
+      displayValue: "0",
+      operator: null,
+      waitingForOperand: false
+    })
+  }
+
+  function deleteLastDigit() {
+    setCalculator({
+      ...calculator,
+      displayValue: calculator.displayValue.slice(0, -1) || "0",
+    })
+  }
+
   console.log(calculator);
 
   return (
@@ -33,7 +49,7 @@ export default function Calculator() {
       <button onClick={handleCalculatorNumberButtonInput}>7</button>
       <button onClick={handleCalculatorNumberButtonInput}>8</button>
       <button onClick={handleCalculatorNumberButtonInput}>9</button>
-      <button>DEL</button>
+      <button onClick={deleteLastDigit}>DEL</button>
       <button onClick={handleCalculatorNumberButtonInput}>4</button>
       <button onClick={handleCalculatorNumberButtonInput}>5</button>
       <button onClick={handleCalculatorNumberButtonInput}>6</button>
@@ -46,7 +62,7 @@ export default function Calculator() {
       <button onClick={handleCalculatorNumberButtonInput}>0</button>
       <button>/</button>
       <button>x</button>
-      <button>RESET</button>
+      <button onClick={resetCalculator}>RESET</button>
       <button>=</button>
     </>
   )
