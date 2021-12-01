@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 
 export default function Calculator() {
 
-  let [calculator, setCalculator] = useState<calculatorObject>({
-    value: null,
-    displayValue: "0",
-    operator: null,
-    waitingForOperand: false
-  });
-  interface calculatorObject {
+  interface CalculatorObject {
     value: number | null;
     displayValue: string;
     operator: string | null;
     waitingForOperand: boolean;
   }
 
+  let [calculator, setCalculator] = useState<CalculatorObject>({
+    value: null,
+    displayValue: "0",
+    operator: null,
+    waitingForOperand: false
+  });
 
   function handleCalculatorNumberButton(e: any) {
     const value = e.target.innerHTML;
@@ -34,10 +34,10 @@ export default function Calculator() {
     const operator = e.target.innerHTML;
 
     setCalculator({
-      ...calculator,
+      value: Number(calculator.displayValue),
       operator,
-      displayValue: "0",
-      waitingForOperand: !calculator.waitingForOperand,
+      displayValue: calculator.waitingForOperand === true ? calculator.displayValue : "0",
+      waitingForOperand: true,
     })
   }
 
@@ -58,6 +58,19 @@ export default function Calculator() {
   }
 
   console.log(calculator);
+
+  function handleCalculation() {
+    console.log(calculator.value, calculator.displayValue, calculator.operator, calculator.waitingForOperand);
+
+    if (calculator.operator === "+" && calculator.value !== null) {
+      setCalculator({
+        ...calculator,
+        value: calculator.value + Number(calculator.displayValue),
+        displayValue: (calculator.value + Number(calculator.displayValue)).toString(),
+        waitingForOperand: false,
+      })
+    }
+  }
 
   return (
     <>
@@ -80,7 +93,7 @@ export default function Calculator() {
       <button>/</button>
       <button>x</button>
       <button onClick={resetCalculator}>RESET</button>
-      <button>=</button>
+      <button onClick={handleCalculation}>=</button>
     </>
   )
 }
