@@ -1,99 +1,156 @@
 import CalculatorHeader from "./CalculatorHeader";
-import { useState, useEffect } from "react";
+import styled from 'styled-components';
+import { useEffect, useState } from "react";
+
+const StyledCalculator = styled.div`
+width: 50%;
+margin: 0 auto;
+`;
+
+
+
+const StyledCalculatorbody = styled.div`
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+button {
+  height: 50px;
+}
+
+  `;
 
 export default function Calculator() {
 
-  interface CalculatorObject {
-    value: number | null;
-    displayValue: string;
-    operator: string | null;
-    waitingForOperand: boolean;
-  }
-
-  let [calculator, setCalculator] = useState<CalculatorObject>({
-    value: null,
-    displayValue: "0",
-    operator: null,
-    waitingForOperand: false
+  const [calculator, setCalculator] = useState({
+    display: "0",
+    operator: "",
+    firstNumber: "",
+    secondNumber: "",
+    result: 0,
   });
+  console.log(calculator);
+
 
   function handleCalculatorNumberButton(e: any) {
-    const value = e.target.innerHTML;
 
-    setCalculator({
-      ...calculator,
-      displayValue: calculator.displayValue === "0" && value === 0 ? "0" // Check if both values are 0, if so, only set one zero (so user cannot set multiple zeros)
-        : calculator.displayValue.includes(".") && value === "." ? calculator.displayValue //Check if displayvalue already has a decimal, if so, don't add another one
-          : calculator.displayValue === "0" && value !== 0 ? value // Check if display value is 0 and value is not 0, if so, set value
-            : calculator.displayValue + value.toString(), // If checks are passed, add value to display value
-    })
+    const number = e.target.innerHTML;
+
+    if (number === "." && calculator.display.includes(".")) {
+      return;
+    }
+
+    setCalculator((prevCalculator) => ({
+      ...prevCalculator,
+      display: prevCalculator.display === "0" ? number : prevCalculator.display + number,
+    }));
+
   }
 
+  function deleteLastDigit() {
+    setCalculator((prevCalculator) => ({
+      ...prevCalculator,
+      display: prevCalculator.display.slice(0, -1),
+    }));
+  }
 
   function handleOperatorButton(e: any) {
+
     const operator = e.target.innerHTML;
 
-    setCalculator({
-      value: Number(calculator.displayValue),
-      operator,
-      displayValue: calculator.waitingForOperand === true ? calculator.displayValue : "0",
-      waitingForOperand: true,
-    })
+    if (calculator.display === "0") {
+      return;
+    };
+
+    if (calculator.operator === "" && calculator.firstNumber === "") {
+      setCalculator((prevCalculator) => ({
+        ...prevCalculator,
+        firstNumber: prevCalculator.display,
+        operator: operator,
+        display: "0",
+      }));
+    }
+
+
   }
 
   function resetCalculator() {
     setCalculator({
-      value: null,
-      displayValue: "0",
-      operator: null,
-      waitingForOperand: false
-    })
+      display: "0",
+      operator: "",
+      firstNumber: "",
+      secondNumber: "",
+      result: 0,
+    });
+
   }
 
-  function deleteLastDigit() {
-    setCalculator({
-      ...calculator,
-      displayValue: calculator.displayValue.slice(0, -1) || "0",
-    })
-  }
+  function handleEquals() {
 
-  console.log(calculator);
+    if (calculator.operator === "" || calculator.firstNumber === "") {
+      return;
+    }
+
+    const result = handleCalculation();
+
+
+    setCalculator((prevCalculator) => ({
+      ...prevCalculator,
+      result: result,
+      display: result.toString(),
+      firstNumber: "",
+      operator: "",
+    }))
+
+
+  }
 
   function handleCalculation() {
-    console.log(calculator.value, calculator.displayValue, calculator.operator, calculator.waitingForOperand);
 
-    if (calculator.operator === "+" && calculator.value !== null) {
-      setCalculator({
-        ...calculator,
-        value: calculator.value + Number(calculator.displayValue),
-        displayValue: (calculator.value + Number(calculator.displayValue)).toString(),
-        waitingForOperand: false,
-      })
+    let result: number = 0;
+
+    switch (calculator.operator) {
+      case "+":
+        result = parseFloat(calculator.firstNumber) + parseFloat(calculator.display);
+        break;
+      case "-":
+        result = parseFloat(calculator.firstNumber) - parseFloat(calculator.display);
+        break;
+      case "x":
+        result = parseFloat(calculator.firstNumber) * parseFloat(calculator.display);
+        break;
+      case "/":
+        result = parseFloat(calculator.firstNumber) / parseFloat(calculator.display);
+        break;
+      default:
+        break;
     }
+
+    return result;
   }
 
   return (
-    <>
-      <CalculatorHeader />
-      <input type="text" value={calculator.displayValue} readOnly />
-      <button onClick={handleCalculatorNumberButton}>7</button>
-      <button onClick={handleCalculatorNumberButton}>8</button>
-      <button onClick={handleCalculatorNumberButton}>9</button>
-      <button onClick={deleteLastDigit}>DEL</button>
-      <button onClick={handleCalculatorNumberButton}>4</button>
-      <button onClick={handleCalculatorNumberButton}>5</button>
-      <button onClick={handleCalculatorNumberButton}>6</button>
-      <button onClick={handleOperatorButton}>+</button>
-      <button onClick={handleCalculatorNumberButton}>1</button>
-      <button onClick={handleCalculatorNumberButton}>2</button>
-      <button onClick={handleCalculatorNumberButton}>3</button>
-      <button>-</button>
-      <button onClick={handleCalculatorNumberButton}>.</button>
-      <button onClick={handleCalculatorNumberButton}>0</button>
-      <button>/</button>
-      <button>x</button>
-      <button onClick={resetCalculator}>RESET</button>
-      <button onClick={handleCalculation}>=</button>
-    </>
+    <StyledCalculator>
+      <CalculatorHeader header="Calc" />
+      <input type="text" value={calculator.display} readOnly />
+      <StyledCalculatorbody>
+        <button onClick={handleCalculatorNumberButton}>7</button>
+        <button onClick={handleCalculatorNumberButton}>8</button>
+        <button onClick={handleCalculatorNumberButton}>9</button>
+        <button onClick={deleteLastDigit}>DEL</button>
+        <button onClick={handleCalculatorNumberButton}>4</button>
+        <button onClick={handleCalculatorNumberButton}>5</button>
+        <button onClick={handleCalculatorNumberButton}>6</button>
+        <button onClick={handleOperatorButton}>+</button>
+        <button onClick={handleCalculatorNumberButton}>1</button>
+        <button onClick={handleCalculatorNumberButton}>2</button>
+        <button onClick={handleCalculatorNumberButton}>3</button>
+        <button onClick={handleOperatorButton}>-</button>
+        <button onClick={handleCalculatorNumberButton}>.</button>
+        <button onClick={handleCalculatorNumberButton}>0</button>
+        <button onClick={handleOperatorButton}>/</button>
+        <button onClick={handleOperatorButton}>x</button>
+        <button onClick={resetCalculator}>RESET</button>
+        <button onClick={handleEquals}>=</button>
+      </StyledCalculatorbody>
+    </StyledCalculator>
   )
 }

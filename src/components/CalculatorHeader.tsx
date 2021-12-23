@@ -5,11 +5,15 @@ const StyledCalculatorHeader = styled.div`
   width: 100%;
 `;
 
-export default function CalculatorHeader() {
+type HeaderProps = {
+  header: string;
+}
+
+export default function CalculatorHeader(props: HeaderProps) {
   return (
     <StyledCalculatorHeader>
-      <h1>Calc</h1>
-      <p>Theme 1 2 3</p>
+      <h1>{props.header}</h1>
+      <p>Theme 1 2 3</p>77777
     </StyledCalculatorHeader>
   )
 }

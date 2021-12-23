@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Page from './components/Page';
 import { ThemeProvider } from 'styled-components';
@@ -22,7 +20,6 @@ const theme = {
 };
 
 function App(props: object) {
-  console.log(props);
   return (
     <ThemeProvider theme={theme}>
       <Page />
