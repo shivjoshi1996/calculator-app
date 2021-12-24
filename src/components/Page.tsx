@@ -6,6 +6,7 @@ const StyledPage = styled.div`
   background: ${props => props.theme.colors.mainBackground};
   height: 100vh;
   width: 100vw;
+  transition: 1s;
 `;
 
 const StyledPageContainer = styled.div`

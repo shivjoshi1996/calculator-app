@@ -15,10 +15,10 @@ const StyledCalculatorDisplay = styled.div`
   margin-bottom: 1.5rem;
   border-radius: 10px;
 
-  input {
+  input[type="text"] {
     width: 100%;
     font-size: 2rem;
-    color: #fff;
+    color: ${props => props.theme.colors.calculatorHeaderTextColour};
     background-color: ${props => props.theme.colors.screenBackground};
     border: none;
     font-weight: 700; 
