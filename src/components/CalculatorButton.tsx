@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
 
+  cursor: pointer;
   font-family: ${props => props.theme.font.main};
   height: 64px;
   font-weight: 700;
@@ -46,6 +47,24 @@ box-shadow: inset 0px -4px 0px ${(props) => {
       return props.theme.colors.buttonFirstShadow;
     }
   }};
+  transition: 0.5s;
+
+  &:hover {
+    background-color: ${(props) => {
+    if (props.color === "third") {
+      return props.theme.colors.buttonThirdHover;
+    } else if (props.color === "second") {
+      return props.theme.colors.buttonSecondHover;
+    } else {
+      return props.theme.colors.buttonFirstHover;
+    }
+  }};
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
 `;
 
 export default function CalculatorButton({ color, value, buttonHandler, className }: { color?: string, value: string, buttonHandler: any, className?: string }) {

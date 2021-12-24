@@ -11,12 +11,16 @@ const theme = {
     toggleBackground: 'hsl(183, 100%, 15%)',
     buttonFirst: '#EAE3DC',
     buttonFirstShadow: '#B3A497',
+    buttonFirstHover: '#FFFFFF',
     buttonSecond: '#647198',
     buttonSecondShadow: '#414E73;',
+    buttonSecondHover: '#A2B2E1',
     buttonThird: '#D03F2F',
     buttonThirdShadow: '#93261A',
+    buttonThirdHover: '#F96B5B',
     buttonTextColor: '#434A59',
     buttonTextColour2: '#FFFFFF',
+    toggleColour: '#D03F2F',
 
 
     keyShadow: 'hsl(185, 41%, 84%)',

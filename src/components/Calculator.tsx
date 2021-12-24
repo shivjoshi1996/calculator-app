@@ -13,6 +13,7 @@ font-family: ${props => props.theme.font.main};
 const StyledCalculatorDisplay = styled.div`
 
   margin-bottom: 1.5rem;
+  border-radius: 10px;
 
   input {
     width: 100%;
