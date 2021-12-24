@@ -1,19 +1,46 @@
 import CalculatorHeader from "./CalculatorHeader";
 import styled from 'styled-components';
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import CalculatorButton from "./CalculatorButton";
 
 const StyledCalculator = styled.div`
-width: 50%;
+width: 90%;
 margin: 0 auto;
+font-family: ${props => props.theme.font.main};
+
 `;
+
+const StyledCalculatorDisplay = styled.div`
+
+  margin-bottom: 1.5rem;
+
+  input {
+    width: 100%;
+    font-size: 2rem;
+    color: #fff;
+    background-color: ${props => props.theme.colors.screenBackground};
+    border: none;
+    font-weight: 700; 
+    text-align: right;
+    border-radius: 10px;
+    padding: 1.625rem 1.5rem;
+  }
+
+  `;
 
 
 
 const StyledCalculatorbody = styled.div`
+background-color: ${props => props.theme.colors.buttonBackground};
+padding: 24px;
+border-radius: 10px;
+
 display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-button {
-  height: 50px;
+grid-template-columns: repeat(4, 1fr);
+gap: 13px;
+
+.half-width {
+  grid-column: span 2;
 }
 
   `;
@@ -130,26 +157,28 @@ export default function Calculator() {
   return (
     <StyledCalculator>
       <CalculatorHeader header="Calc" />
-      <input type="text" value={calculator.display} readOnly />
+      <StyledCalculatorDisplay>
+        <input type="text" value={calculator.display} readOnly />
+      </StyledCalculatorDisplay>
       <StyledCalculatorbody>
-        <button onClick={handleCalculatorNumberButton}>7</button>
-        <button onClick={handleCalculatorNumberButton}>8</button>
-        <button onClick={handleCalculatorNumberButton}>9</button>
-        <button onClick={deleteLastDigit}>DEL</button>
-        <button onClick={handleCalculatorNumberButton}>4</button>
-        <button onClick={handleCalculatorNumberButton}>5</button>
-        <button onClick={handleCalculatorNumberButton}>6</button>
-        <button onClick={handleOperatorButton}>+</button>
-        <button onClick={handleCalculatorNumberButton}>1</button>
-        <button onClick={handleCalculatorNumberButton}>2</button>
-        <button onClick={handleCalculatorNumberButton}>3</button>
-        <button onClick={handleOperatorButton}>-</button>
-        <button onClick={handleCalculatorNumberButton}>.</button>
-        <button onClick={handleCalculatorNumberButton}>0</button>
-        <button onClick={handleOperatorButton}>/</button>
-        <button onClick={handleOperatorButton}>x</button>
-        <button onClick={resetCalculator}>RESET</button>
-        <button onClick={handleEquals}>=</button>
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="7" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="8" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="9" />
+        <CalculatorButton color="second" buttonHandler={deleteLastDigit} value="DEL" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="4" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="5" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="6" />
+        <CalculatorButton buttonHandler={handleOperatorButton} value="+" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="1" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="2" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="3" />
+        <CalculatorButton buttonHandler={handleOperatorButton} value="-" />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="." />
+        <CalculatorButton buttonHandler={handleCalculatorNumberButton} value="0" />
+        <CalculatorButton buttonHandler={handleOperatorButton} value="/" />
+        <CalculatorButton buttonHandler={handleOperatorButton} value="x" />
+        <CalculatorButton className="half-width" color="second" buttonHandler={resetCalculator} value="RESET" />
+        <CalculatorButton className="half-width" color="third" buttonHandler={handleEquals} value="=" />
       </StyledCalculatorbody>
     </StyledCalculator>
   )
