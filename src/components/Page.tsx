@@ -12,11 +12,11 @@ const StyledPageContainer = styled.div`
  
 `;
 
-export default function Page(props: object) {
+export default function Page(props: any) {
   return (
     <StyledPage>
       <StyledPageContainer>
-        <Calculator />
+        <Calculator handleToggleChange={props.handleToggleChange} themeToggleValue={props.themeToggleValue} setThemeToggleValue={props.setThemeToggleValue} />
       </StyledPageContainer>
     </StyledPage>
   );

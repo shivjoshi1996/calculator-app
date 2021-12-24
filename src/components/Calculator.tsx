@@ -46,7 +46,7 @@ gap: 13px;
 
   `;
 
-export default function Calculator() {
+export default function Calculator(props: any) {
 
   const [calculator, setCalculator] = useState({
     display: "0",
@@ -157,7 +157,7 @@ export default function Calculator() {
 
   return (
     <StyledCalculator>
-      <CalculatorHeader header="Calc" />
+      <CalculatorHeader handleToggleChange={props.handleToggleChange} themeToggleValue={props.themeToggleValue} setThemeToggleValue={props.setThemeToggleValue} header="Calc" />
       <StyledCalculatorDisplay>
         <input type="text" value={calculator.display} readOnly />
       </StyledCalculatorDisplay>

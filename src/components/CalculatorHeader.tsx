@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledCalculatorHeader = styled.div`
@@ -6,6 +7,7 @@ const StyledCalculatorHeader = styled.div`
   width: 100%;
   padding-top: 28px;
   margin-bottom: 32px;
+  color: ${props => props.theme.colors.calculatorHeaderTextColour};
 
   h1 {
     font-size: 32px;
@@ -96,9 +98,11 @@ input[type=range]::-ms-fill-upper {
 
 type HeaderProps = {
   header: string;
+
 }
 
-export default function CalculatorHeader(props: HeaderProps) {
+export default function CalculatorHeader(props: any) {
+
   return (
     <StyledCalculatorHeader>
       <h1>{props.header}</h1>
@@ -106,7 +110,7 @@ export default function CalculatorHeader(props: HeaderProps) {
         <p>1</p>
         <p>2</p>
         <p>3</p>
-        <input type="range" min="1" step="1" max="3" />
+        <input type="range" min="1" step="1" max="3" value={props.themeToggleValue} onChange={props.handleToggleChange} />
       </StyledThemeToggleWrapper>
     </StyledCalculatorHeader>
   )
