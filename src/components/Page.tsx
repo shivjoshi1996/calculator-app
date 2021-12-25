@@ -17,7 +17,7 @@ export default function Page(props: any) {
   return (
     <StyledPage>
       <StyledPageContainer>
-        <Calculator handleToggleChange={props.handleToggleChange} themeToggleValue={props.themeToggleValue} setThemeToggleValue={props.setThemeToggleValue} />
+        <Calculator handleToggleChange={props.handleToggleChange} themeToggleValue={props.themeToggleValue} />
       </StyledPageContainer>
     </StyledPage>
   );

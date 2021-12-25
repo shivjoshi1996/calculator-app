@@ -86,22 +86,22 @@ function App(props: object) {
 
   const [themeToggleValue, setThemeToggleValue] = useState("1");
   const [themeChosen, setTheme] = useState({
-    chosenTheme: theme,
+    currentTheme: theme,
   });
   console.log(themeToggleValue);
 
   useEffect(() => {
     if (themeToggleValue === "1") {
       setTheme({
-        chosenTheme: theme,
+        currentTheme: theme,
       });
     } else if (themeToggleValue === "2") {
       setTheme({
-        chosenTheme: theme2,
+        currentTheme: theme2,
       });
     } else {
       setTheme({
-        chosenTheme: theme3,
+        currentTheme: theme3,
       });
     }
   }, [themeToggleValue]);
@@ -111,9 +111,9 @@ function App(props: object) {
   }
 
   return (
-    <ThemeProvider theme={themeChosen.chosenTheme}>
+    <ThemeProvider theme={themeChosen.currentTheme}>
       <GlobalStyles />
-      <Page handleToggleChange={handleToggleChange} themeToggleValue={themeToggleValue} setThemeToggleValue={setThemeToggleValue} />
+      <Page handleToggleChange={handleToggleChange} themeToggleValue={themeToggleValue} />
     </ThemeProvider>
   );
 }

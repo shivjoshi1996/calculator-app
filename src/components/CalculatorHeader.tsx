@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledCalculatorHeader = styled.div`
@@ -15,17 +14,36 @@ const StyledCalculatorHeader = styled.div`
   `;
 
 const StyledThemeToggleWrapper = styled.div`
-  width: 71px;
+  width: 144px;
   height: 44px;
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: auto 71px;
+  grid-template-rows: auto auto;
+  column-gap: 21px;
 
-  input {
+  .theme-toggle-label {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .theme-numbers {
+    display: flex;
+    grid-column: 2;
     width: 100%;
-    grid-column: span 3;
+    justify-content: space-around;
+  }
+
+  .theme-toggle {
+    grid-row: 2;
+    grid-column: 2;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 12px;
+  }
   }
 
   /* Special styling for WebKit/Blink */
@@ -98,19 +116,27 @@ input[type=range]::-ms-fill-upper {
 
 type HeaderProps = {
   header: string;
-
+  themeToggleValue: string,
+  handleToggleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function CalculatorHeader(props: any) {
+export default function CalculatorHeader(props: HeaderProps) {
 
   return (
     <StyledCalculatorHeader>
       <h1>{props.header}</h1>
       <StyledThemeToggleWrapper>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
-        <input type="range" min="1" step="1" max="3" value={props.themeToggleValue} onChange={props.handleToggleChange} />
+        <div className="theme-toggle-label">
+          <p>THEME</p>
+        </div>
+        <div className="theme-numbers">
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+        </div>
+        <div className="theme-toggle">
+          <input type="range" min="1" step="1" max="3" value={props.themeToggleValue} onChange={props.handleToggleChange} />
+        </div>
       </StyledThemeToggleWrapper>
     </StyledCalculatorHeader>
   )

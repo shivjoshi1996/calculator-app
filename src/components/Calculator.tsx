@@ -44,9 +44,15 @@ gap: 13px;
   grid-column: span 2;
 }
 
-  `;
+`;
 
-export default function Calculator(props: any) {
+type CalculatorProps = {
+  themeToggleValue: string;
+  handleToggleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+
+export default function Calculator(props: CalculatorProps) {
 
   const [calculator, setCalculator] = useState({
     display: "0",
@@ -55,7 +61,6 @@ export default function Calculator(props: any) {
     secondNumber: "",
     result: 0,
   });
-  console.log(calculator);
 
 
   function handleCalculatorNumberButton(e: any) {
@@ -157,7 +162,7 @@ export default function Calculator(props: any) {
 
   return (
     <StyledCalculator>
-      <CalculatorHeader handleToggleChange={props.handleToggleChange} themeToggleValue={props.themeToggleValue} setThemeToggleValue={props.setThemeToggleValue} header="Calc" />
+      <CalculatorHeader handleToggleChange={props.handleToggleChange} themeToggleValue={props.themeToggleValue} header="Calc" />
       <StyledCalculatorDisplay>
         <input type="text" value={calculator.display} readOnly />
       </StyledCalculatorDisplay>

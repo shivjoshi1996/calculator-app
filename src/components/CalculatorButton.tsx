@@ -67,7 +67,14 @@ box-shadow: inset 0px -4px 0px ${(props) => {
   }
 `;
 
-export default function CalculatorButton({ color, value, buttonHandler, className }: { color?: string, value: string, buttonHandler: any, className?: string }) {
+type CalculatorButtonProps = {
+  color?: string;
+  value: string;
+  buttonHandler: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
+}
+
+export default function CalculatorButton({ color, value, buttonHandler, className }: CalculatorButtonProps) {
   return (
     <StyledButton className={className} onClick={buttonHandler} color={color}>{value}</StyledButton>
   )
