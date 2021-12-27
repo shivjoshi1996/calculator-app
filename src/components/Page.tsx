@@ -4,7 +4,7 @@ import Calculator from './Calculator';
 
 const StyledPage = styled.div`
   background: ${props => props.theme.colors.mainBackground};
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 `;
 
