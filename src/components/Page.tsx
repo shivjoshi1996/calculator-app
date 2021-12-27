@@ -10,7 +10,11 @@ const StyledPage = styled.div`
 `;
 
 const StyledPageContainer = styled.div`
- 
+  @media (min-width: 768px) {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export default function Page(props: any) {

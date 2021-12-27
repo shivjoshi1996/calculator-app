@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   font-weight: 700;
   border: none;
   border-radius: 5px;
+  transition: 0.5s;
 
   font-size: ${(props) => {
     if (props.color === "third" || props.color === "second") {
@@ -47,7 +48,6 @@ box-shadow: inset 0px -4px 0px ${(props) => {
       return props.theme.colors.buttonFirstShadow;
     }
   }};
-  transition: 0.5s;
 
   &:hover {
     background-color: ${(props) => {
@@ -64,6 +64,16 @@ box-shadow: inset 0px -4px 0px ${(props) => {
   &:active {
     box-shadow: none;
     transform: translateY(4px);
+  }
+
+  @media (min-width: 768px) {
+    font-size: ${(props) => {
+    if (props.color === "third" || props.color === "second") {
+      return "1.25rem";
+    } else {
+      return "2rem";
+    }
+  }};
   }
 `;
 

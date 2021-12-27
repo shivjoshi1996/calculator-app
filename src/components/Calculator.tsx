@@ -7,6 +7,11 @@ const StyledCalculator = styled.div`
 width: 90%;
 margin: 0 auto;
 font-family: ${props => props.theme.font.main};
+max-width: 327px;
+
+@media (min-width: 768px) {
+  max-width: 540px;
+}
 
 `;
 
@@ -25,7 +30,15 @@ const StyledCalculatorDisplay = styled.div`
     text-align: right;
     border-radius: 10px;
     padding: 1.625rem 1.5rem;
+    font-family: ${props => props.theme.font.main};
+
+
+    @media (min-width: 768px) {
+      padding: 2.375rem 2rem;
+      font-size: 3rem;
+    }
   }
+
 
   `;
 
