@@ -57,6 +57,11 @@ gap: 13px;
   grid-column: span 2;
 }
 
+@media (min-width: 768px) {
+  padding: 32px;
+  gap: 24px;
+}
+
 `;
 
 type CalculatorProps = {
