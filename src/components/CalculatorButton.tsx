@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
 
-  cursor: pointer;
-  font-family: ${props => props.theme.font.main};
+
+cursor: pointer;
+font-family: ${props => props.theme.font.main};
   height: 64px;
   font-weight: 700;
   border: none;
@@ -19,7 +20,7 @@ const StyledButton = styled.button`
     }
   }};
 
-  color: ${(props) => {
+color: ${(props) => {
     if (props.color === "third") {
       return props.theme.colors.buttonTextColour2;
     } else if (props.color === "second") {
@@ -29,7 +30,7 @@ const StyledButton = styled.button`
     }
   }};
 
-  background-color: ${(props) => {
+background-color: ${(props) => {
     if (props.color === "third") {
       return props.theme.colors.buttonThird;
     } else if (props.color === "second") {
@@ -49,8 +50,8 @@ box-shadow: inset 0px -4px 0px ${(props) => {
     }
   }};
 
-  &:hover {
-    background-color: ${(props) => {
+&:hover {
+  background-color: ${(props) => {
     if (props.color === "third") {
       return props.theme.colors.buttonThirdHover;
     } else if (props.color === "second") {
@@ -65,7 +66,11 @@ box-shadow: inset 0px -4px 0px ${(props) => {
     box-shadow: none;
     transform: translateY(4px);
   }
-
+  
+  @media (max-width: 18.125rem) {
+    font-size: 16px;
+    height: 50px;
+  }
   @media (min-width: 768px) {
     font-size: ${(props) => {
     if (props.color === "third" || props.color === "second") {

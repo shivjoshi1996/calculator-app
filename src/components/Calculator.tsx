@@ -46,18 +46,18 @@ const StyledCalculatorDisplay = styled.div`
 
 const StyledCalculatorbody = styled.div`
 background-color: ${props => props.theme.colors.buttonBackground};
-padding: 24px;
+padding: 1.5rem;
 border-radius: 10px;
 
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-gap: 13px;
+gap: 0.8125rem;
 
 .half-width {
   grid-column: span 2;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   padding: 32px;
   gap: 24px;
 }
