@@ -50,6 +50,10 @@ padding: 1.5rem;
 border-radius: 10px;
 
 display: grid;
+align-items: center;
+justify-content: center;
+justify-items: stretch;
+align-content: center;
 grid-template-columns: repeat(4, minmax(0, 1fr));
 gap: 0.8125rem;
 
