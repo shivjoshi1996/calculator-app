@@ -7,10 +7,12 @@ const StyledButton = styled.button`
 cursor: pointer;
 font-family: ${props => props.theme.font.main};
   height: 64px;
+  width: 100%;
   font-weight: 700;
   border: none;
   border-radius: 5px;
   transition: 0.5s;
+  text-align: center;
 
   font-size: ${(props) => {
     if (props.color === "third" || props.color === "second") {
@@ -68,7 +70,7 @@ box-shadow: inset 0px -4px 0px ${(props) => {
   }
   
   @media (max-width: 18.125rem) {
-    font-size: 16px;
+    font-size: 10px;
     height: 50px;
   }
   @media (min-width: 768px) {
