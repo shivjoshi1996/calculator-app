@@ -50,7 +50,8 @@ padding: 1.5rem;
 border-radius: 10px;
 
 display: grid;
-grid-template-columns: repeat(4, 1fr);
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 0.8125rem;
 
 .half-width {
   grid-column: span 2;
